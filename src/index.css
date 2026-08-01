@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  --color-moss-50: #f2f7f2;
+  --color-moss-100: #dfeadf;
+  --color-moss-200: #bfd6c1;
+  --color-moss-300: #94ba9a;
+  --color-moss-400: #679b71;
+  --color-moss-500: #487f54;
+  --color-moss-600: #366542;
+  --color-moss-700: #2c5137;
+  --color-moss-800: #24412e;
+  --color-moss-900: #1e3626;
+  --color-moss-950: #0c1a11;
+
+  --color-night: #060d09;
+  --color-cream: #f4f1e8;
+  --color-gold: #d8b465;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-night text-cream font-sans antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-moss-500);
+  color: var(--color-cream);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(42px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+
+/* 3D tilt cards */
+.tilt-scene {
+  perspective: 1200px;
+}
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  will-change: transform;
+}
+.tilt-card .tilt-pop {
+  transform: translateZ(46px);
+}
+
+/* Card fan carousel */
+.fan-layout {
+  height: 38rem;
+}
+.fan-card {
+  position: absolute;
+  width: 17rem;
+  aspect-ratio: 4 / 7;
+  border-radius: 1.4rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-moss-700) 60%, transparent);
+  background: var(--color-moss-950);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+  opacity: 0; /* gsap animates cards in */
+  will-change: transform;
+}
+@media (max-width: 1023px) {
+  .fan-layout { height: 34rem; }
+  .fan-card { width: 15rem; }
+}
+@media (max-width: 767px) {
+  .fan-layout { height: 28rem; }
+  .fan-card { width: 12.5rem; }
+}
+@media (max-width: 639px) {
+  .fan-layout { height: 26rem; }
+  .fan-card { width: 11.5rem; }
+}
+@media (max-width: 479px) {
+  .fan-layout { height: 22rem; }
+  .fan-card { width: 10rem; }
+}
+
+/* Carousel */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.carousel-track {
+  scroll-snap-type: x mandatory;
+}
+.carousel-track.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
