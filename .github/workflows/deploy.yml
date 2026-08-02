@@ -26,12 +26,6 @@ jobs:
           node-version: 20
           cache: npm
 
-      # Turns Pages on for the repo if it isn't already, so no manual
-      # Settings toggle is needed for the first deploy.
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
       - run: npm ci
 
       - name: Build
