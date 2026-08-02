@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
+/** Prefix public assets with the deploy base so they resolve under a subpath
+ *  (e.g. GitHub Pages serves this project from /GreenPlanet/). */
+const asset = (p: string) => `${import.meta.env.BASE_URL}${p}`;
+
 interface ParallaxLayer {
   src: string;
   alt: string;
@@ -28,7 +32,7 @@ interface ParallaxHeroProps {
 
 const defaultLayers: ParallaxLayer[] = [
   {
-    src: '/hero/background.webp',
+    src: asset('hero/background.webp'),
     alt: 'background',
     speedX: 0.03,
     speedY: 0.038,
@@ -41,7 +45,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '3200px',
   },
   {
-    src: '/hero/fog-7.webp',
+    src: asset('hero/fog-7.webp'),
     alt: 'fog-7',
     speedX: 0.27,
     speedY: 0.32,
@@ -54,7 +58,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '1900px',
   },
   {
-    src: '/hero/mountain-10.webp',
+    src: asset('hero/mountain-10.webp'),
     alt: 'mountain-10',
     speedX: 0.095,
     speedY: 0.005,
@@ -67,7 +71,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '1200px',
   },
   {
-    src: '/hero/fog-6.webp',
+    src: asset('hero/fog-6.webp'),
     alt: 'fog-6',
     speedX: 0.25,
     speedY: 0.28,
@@ -81,7 +85,7 @@ const defaultLayers: ParallaxLayer[] = [
     className: 'opacity-30',
   },
   {
-    src: '/hero/mountain-9.webp',
+    src: asset('hero/mountain-9.webp'),
     alt: 'mountain-9',
     speedX: 0.125,
     speedY: 0.155,
@@ -94,7 +98,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '670px',
   },
   {
-    src: '/hero/fog-5.webp',
+    src: asset('hero/fog-5.webp'),
     alt: 'fog-5',
     speedX: 0.16,
     speedY: 0.105,
@@ -107,7 +111,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '650px',
   },
   {
-    src: '/hero/mountain-7.webp',
+    src: asset('hero/mountain-7.webp'),
     alt: 'mountain-7',
     speedX: 0.1,
     speedY: 0.1,
@@ -120,7 +124,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '738px',
   },
   {
-    src: '/hero/mountain-6.webp',
+    src: asset('hero/mountain-6.webp'),
     alt: 'mountain-6',
     speedX: 0.065,
     speedY: 0.05,
@@ -133,7 +137,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '408px',
   },
   {
-    src: '/hero/fog-4.webp',
+    src: asset('hero/fog-4.webp'),
     alt: 'fog-4',
     speedX: 0.135,
     speedY: 0.1,
@@ -147,7 +151,7 @@ const defaultLayers: ParallaxLayer[] = [
     className: 'opacity-50',
   },
   {
-    src: '/hero/mountain-5.webp',
+    src: asset('hero/mountain-5.webp'),
     alt: 'mountain-5',
     speedX: 0.08,
     speedY: 0.05,
@@ -160,7 +164,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '725px',
   },
   {
-    src: '/hero/fog-3.webp',
+    src: asset('hero/fog-3.webp'),
     alt: 'fog-3',
     speedX: 0.11,
     speedY: 0.018,
@@ -173,7 +177,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '1600px',
   },
   {
-    src: '/hero/mountain-4.webp',
+    src: asset('hero/mountain-4.webp'),
     alt: 'mountain-4',
     speedX: 0.059,
     speedY: 0.024,
@@ -186,7 +190,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '1100px',
   },
   {
-    src: '/hero/mountain-3.webp',
+    src: asset('hero/mountain-3.webp'),
     alt: 'mountain-3',
     speedX: 0.04,
     speedY: 0.018,
@@ -199,7 +203,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '630px',
   },
   {
-    src: '/hero/fog-2.webp',
+    src: asset('hero/fog-2.webp'),
     alt: 'fog-2',
     speedX: 0.15,
     speedY: 0.0115,
@@ -212,7 +216,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '1100px',
   },
   {
-    src: '/hero/mountain-2.webp',
+    src: asset('hero/mountain-2.webp'),
     alt: 'mountain-2',
     speedX: 0.0235,
     speedY: 0.013,
@@ -225,7 +229,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '800px',
   },
   {
-    src: '/hero/mountain-1.webp',
+    src: asset('hero/mountain-1.webp'),
     alt: 'mountain-1',
     speedX: 0.027,
     speedY: 0.018,
@@ -238,7 +242,7 @@ const defaultLayers: ParallaxLayer[] = [
     width: '1100px',
   },
   {
-    src: '/hero/fog-1.webp',
+    src: asset('hero/fog-1.webp'),
     alt: 'fog-1',
     speedX: 0.12,
     speedY: 0.01,

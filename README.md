@@ -2,6 +2,8 @@
 
 A premium, nature-themed multi-page website built around a 3D mouse-parallax wilderness hero.
 
+### 🔗 Live site — **https://parekhankit26.github.io/GreenPlanet/**
+
 ![Vite](https://img.shields.io/badge/Vite-7-646CFF) ![React](https://img.shields.io/badge/React-19-61DAFB) ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6) ![Tailwind](https://img.shields.io/badge/Tailwind-v4-06B6D4)
 
 ## Features
@@ -21,18 +23,27 @@ A premium, nature-themed multi-page website built around a 3D mouse-parallax wil
 | Routing | React Router v7 |
 | Animation | GSAP + CSS transforms |
 
-## Getting started
+## Running it locally
+
+You need [Node.js](https://nodejs.org) 20 or newer. Then, from the project folder:
 
 ```bash
 npm install
+```
+
+```bash
 npm run dev
 ```
 
-The dev server runs at http://localhost:5180.
+That starts the dev server on **http://localhost:5180** and opens it in your browser automatically. Leave that terminal window running while you work — closing it stops the site. Press `Ctrl+C` to stop.
+
+> Nothing loading? Make sure you ran `npm install` first and that you're in the project folder (the one containing `package.json`).
+
+To check the production build:
 
 ```bash
-npm run build     # type-check and build to dist/
-npm run preview   # preview the production build
+npm run build     # type-check and build into dist/
+npm run preview   # serve the built site on http://localhost:5180
 ```
 
 ## Project structure
@@ -56,7 +67,11 @@ src/
 
 ## Deployment
 
-The build outputs a static site to `dist/`. Because routing is client-side, the host must rewrite unknown paths to `index.html` or deep links will 404 — `public/.htaccess` handles this on Apache/cPanel. On Netlify or Vercel, add the equivalent SPA fallback rule.
+**GitHub Pages (automatic).** Every push to `main` triggers `.github/workflows/deploy.yml`, which builds the site and publishes it to https://parekhankit26.github.io/GreenPlanet/. Nothing to run by hand.
+
+Because project pages are served from a `/GreenPlanet/` subpath, the workflow builds with `VITE_BASE=/GreenPlanet/`; the router and the hero images both read that base at runtime. It also copies `index.html` to `404.html`, since GitHub Pages has no rewrite rules and would otherwise 404 on a direct hit to `/wonders`.
+
+**Any other host.** `npm run build` outputs a static site to `dist/` with base `/`, ready for a root domain. Routing is client-side, so the host must rewrite unknown paths to `index.html` — `public/.htaccess` handles that on Apache/cPanel; add the equivalent SPA fallback on Netlify or Vercel.
 
 ## Credits
 
